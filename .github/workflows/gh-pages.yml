@@ -38,6 +38,10 @@ jobs:
         run: yarn build
       - name: Export
         run: yarn export
+      - name: Upload
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: build
 
   deploy:
     needs: build
