@@ -6,5 +6,5 @@ body {
 
 @font-face {
   font-family: "keifont";
-  src: url("/keifont.ttf");
+  src: url("./keifont.ttf");
 }
