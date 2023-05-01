@@ -56,12 +56,12 @@ const Index = () => {
         <meta property="og:site_name" content="げんこつ" />
         <meta
           property="og:image"
-          content="https://inaniwaudon.github.io/genkotsu.png"
+          content="https://inaniwaudon.github.io/genkotsu/genkotsu.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:image"
-          content="https://inaniwaudon.github.io/genkotsu.pngg"
+          content="https://inaniwaudon.github.io/genkotsu/genkotsu.png"
         />
       </Head>
       <Main>

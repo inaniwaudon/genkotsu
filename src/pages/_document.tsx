@@ -39,8 +39,6 @@ export default class MyDocument extends Document {
       <Html lang="ja">
         <Head>
           <meta charSet="utf-8" />
-          <meta name="robots" content="noindex,nofollow" />
-          <link rel="stylesheet" href="https://use.typekit.net/ckt5rdp.css" />
         </Head>
         <body>
           <Main />
