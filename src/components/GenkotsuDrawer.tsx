@@ -1,4 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+
+const Canvas = styled.canvas`
+  height: 400px;
+`;
 
 interface GenkotsuDrawerProps {
   text: string;
@@ -149,7 +154,7 @@ const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
     }
   }, [text]);
 
-  return <canvas width={width} height={height} ref={canvasRef} />;
+  return <Canvas width={width} height={height} ref={canvasRef} />;
 };
 
 export default GenkotsuDrawer;
