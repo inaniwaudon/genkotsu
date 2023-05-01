@@ -10,6 +10,7 @@ const Main = styled.main`
 `;
 
 const Input = styled.input`
+  max-width: 100%;
   font-size: 48px;
   font-family: "keifont";
   margin-bottom: 24px;
@@ -76,8 +77,16 @@ const Index = () => {
         <GenkotsuDrawer text={text} />
         <Footer>
           <p>
-            表示用に「けいふぉんと」を使用しています。The keifont, that is
-            included in this site, is distributed in the Apache License 2.0.
+            表示用に「
+            <Anchor href="http://font.sumomo.ne.jp/font_1.html">
+              けいふぉんと
+            </Anchor>
+            」を使用しています。The keifont, that is included in this site, is
+            distributed in{" "}
+            <Anchor href="https://licenses.opensource.jp/Apache-2.0/Apache-2.0.html">
+              the Apache License 2.0
+            </Anchor>
+            .
           </p>
           <SnsParagraph>
             <Anchor href="https://github.com/inaniwaudon/genkotsu">

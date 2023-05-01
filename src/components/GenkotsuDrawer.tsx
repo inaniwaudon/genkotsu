@@ -1,13 +1,31 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useTransition } from "react";
 import styled from "styled-components";
+
+const maxWidth = 400 * (16 / 9);
+
+const Wrapper = styled.section`
+  width: 100%;
+  max-width: ${maxWidth}px;
+`;
 
 const Canvas = styled.canvas`
   height: 400px;
 
-  @media screen and (max-width: ${400 * (16 / 9) + 32 * 2}px) {
+  @media screen and (max-width: ${maxWidth + 32 * 2}px) {
     width: 100%;
     height: auto;
   }
+`;
+
+const Download = styled.a`
+  width: 300px;
+  text-align: center;
+  margin: 16px auto 0 auto;
+  padding: 8px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  display: block;
 `;
 
 interface GenkotsuDrawerProps {
@@ -15,6 +33,8 @@ interface GenkotsuDrawerProps {
 }
 
 const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
+  const [_, startTransition] = useTransition();
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const width = 1920 / 2;
@@ -67,98 +87,114 @@ const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
   };
 
   useEffect(() => {
-    if (canvasRef.current) {
-      const context = canvasRef.current.getContext("2d");
-      if (!context) {
-        return;
-      }
-
-      // draw background
-      const color0 = "#ec826a";
-      const color1 = "#bf5677";
-      const color2 = "#525abf";
-      const gradient = context.createRadialGradient(
-        width / 2,
-        height / 2,
-        height / 4,
-        width / 2,
-        height / 2,
-        height
-      );
-      gradient.addColorStop(0, color0);
-      gradient.addColorStop(0.3, color1);
-      gradient.addColorStop(1, color2);
-      context.fillStyle = gradient;
-      context.fillRect(0, 0, width, height);
-
-      context.fillStyle = "#ff6";
-      context.beginPath();
-
-      context.shadowColor = "rgba(255,255,255,0.4)";
-      context.shadowOffsetX = 0;
-      context.shadowOffsetY = 0;
-      context.shadowBlur = 60;
-
-      for (let i = 0; i < 6; i++) {
-        context.moveTo(width / 2, 0);
-        const angle = (i - 3) * 0.06 + Math.random() * 0.1;
-        const from = Math.abs(i - 3) * 60 + Math.random() * 20;
-        const to = height - Math.random() * 80;
-        const count = 20;
-
-        const xList: number[] = [];
-        const yList: number[] = [];
-
-        for (let i = 0; i < count; i++) {
-          xList.push(width / 2 + angle * 100 * i + Math.random() * 40);
-          yList.push(((to - from) / count) * i + Math.random() * 30 + from);
-          const x = xList[i] - 10;
-          const y = yList[i] + 10;
-          context.lineTo(x, y);
+    startTransition(() => {
+      if (canvasRef.current) {
+        const context = canvasRef.current.getContext("2d");
+        if (!context) {
+          return;
         }
-        for (let i = count; i >= 0; i--) {
-          const x = xList[i] + 10;
-          const y = yList[i];
-          context.lineTo(x, y);
-        }
-        context.fill();
-      }
 
-      context.shadowColor = "transparent";
-      context.shadowBlur = 0;
-
-      // draw a base text
-      const textCanvas = document.createElement("canvas");
-      textCanvas.width = width;
-      textCanvas.height = height;
-      const textContext = textCanvas.getContext("2d");
-      if (!textContext) {
-        return;
-      }
-
-      // appearance
-      const loops = 100;
-      for (let i = 0; i < loops; i++) {
-        textContext.clearRect(0, 0, width, height);
-        const scale = 1.0 - (1.0 / loops) * i;
-        const scaledWidth = width * scale;
-        const scaledHeight = height * scale;
-        const t = i / loops;
-        const l0 = 60 + (1 - Math.pow(1 - t, 3)) * 40;
-        drawText(text, false, `hsl(0, 100%, ${l0}%)`, textContext);
-        context.drawImage(
-          textCanvas,
-          (width - scaledWidth) / 2,
-          (height - scaledHeight) / 2,
-          scaledWidth,
-          scaledHeight
+        // draw background
+        const color0 = "#ec826a";
+        const color1 = "#bf5677";
+        const color2 = "#525abf";
+        const gradient = context.createRadialGradient(
+          width / 2,
+          height / 2,
+          height / 4,
+          width / 2,
+          height / 2,
+          height
         );
+        gradient.addColorStop(0, color0);
+        gradient.addColorStop(0.3, color1);
+        gradient.addColorStop(1, color2);
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, width, height);
+
+        context.fillStyle = "#ff6";
+        context.beginPath();
+
+        context.shadowColor = "rgba(255,255,255,0.4)";
+        context.shadowOffsetX = 0;
+        context.shadowOffsetY = 0;
+        context.shadowBlur = 60;
+
+        for (let i = 0; i < 6; i++) {
+          context.moveTo(width / 2, 0);
+          const angle = (i - 3) * 0.06 + Math.random() * 0.1;
+          const from = Math.abs(i - 3) * 60 + Math.random() * 20;
+          const to = height - Math.random() * 80;
+          const count = 20;
+
+          const xList: number[] = [];
+          const yList: number[] = [];
+
+          for (let i = 0; i < count; i++) {
+            xList.push(width / 2 + angle * 100 * i + Math.random() * 40);
+            yList.push(((to - from) / count) * i + Math.random() * 30 + from);
+            const x = xList[i] - 10;
+            const y = yList[i] + 10;
+            context.lineTo(x, y);
+          }
+          for (let i = count; i >= 0; i--) {
+            const x = xList[i] + 10;
+            const y = yList[i];
+            context.lineTo(x, y);
+          }
+          context.fill();
+        }
+
+        context.shadowColor = "transparent";
+        context.shadowBlur = 0;
+
+        // draw a base text
+        const textCanvas = document.createElement("canvas");
+        textCanvas.width = width;
+        textCanvas.height = height;
+        const textContext = textCanvas.getContext("2d");
+        if (!textContext) {
+          return;
+        }
+
+        // appearance
+        const loops = 100;
+        for (let i = 0; i < loops; i++) {
+          textContext.clearRect(0, 0, width, height);
+          const scale = 1.0 - (1.0 / loops) * i;
+          const scaledWidth = width * scale;
+          const scaledHeight = height * scale;
+          const t = i / loops;
+          const l0 = 60 + (1 - Math.pow(1 - t, 3)) * 40;
+          drawText(text, false, `hsl(0, 100%, ${l0}%)`, textContext);
+          context.drawImage(
+            textCanvas,
+            (width - scaledWidth) / 2,
+            (height - scaledHeight) / 2,
+            scaledWidth,
+            scaledHeight
+          );
+        }
+        drawText(text, true, "#fff", context);
       }
-      drawText(text, true, "#fff", context);
-    }
+    });
   }, [text]);
 
-  return <Canvas width={width} height={height} ref={canvasRef} />;
+  const downloadImage = () => {
+    if (canvasRef.current) {
+      const link = document.createElement("a");
+      link.href = canvasRef.current.toDataURL("image/png");
+      link.download = "genkotsu.png";
+      link.click();
+    }
+  };
+
+  return (
+    <Wrapper>
+      <Canvas width={width} height={height} ref={canvasRef} />
+      <Download onClick={downloadImage}>画像をダウンロード</Download>
+    </Wrapper>
+  );
 };
 
 export default GenkotsuDrawer;
