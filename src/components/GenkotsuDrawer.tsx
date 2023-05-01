@@ -3,6 +3,11 @@ import styled from "styled-components";
 
 const Canvas = styled.canvas`
   height: 400px;
+
+  @media screen and (max-width: ${400 * (16 / 9) + 32 * 2}px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 interface GenkotsuDrawerProps {
@@ -110,7 +115,6 @@ const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
           const x = xList[i] - 10;
           const y = yList[i] + 10;
           context.lineTo(x, y);
-          console.log(x, y, "?");
         }
         for (let i = count; i >= 0; i--) {
           const x = xList[i] + 10;
@@ -133,7 +137,7 @@ const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
       }
 
       // appearance
-      const loops = 500;
+      const loops = 100;
       for (let i = 0; i < loops; i++) {
         textContext.clearRect(0, 0, width, height);
         const scale = 1.0 - (1.0 / loops) * i;

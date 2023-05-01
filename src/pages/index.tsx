@@ -5,6 +5,7 @@ import styled from "styled-components";
 import GenkotsuDrawer from "@/components/GenkotsuDrawer";
 
 const Main = styled.main`
+  font-family: sans-serif;
   margin: 32px;
 `;
 
