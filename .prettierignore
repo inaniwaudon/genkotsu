@@ -1,0 +1,5 @@
+.next/
+next-env.d.ts
+package-lock.json
+public/gif.js
+public/gif.worker.js

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+
 import { keiFont } from './localFonts'
 
 export const GlobalStyle = createGlobalStyle`
