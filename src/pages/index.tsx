@@ -3,6 +3,7 @@ import Script from "next/script";
 import Head from "next/head";
 import styled from "styled-components";
 import GenkotsuDrawer from "@/components/GenkotsuDrawer";
+import { keiFont } from "@/styles/globalStyle";
 
 const Main = styled.main`
   font-family: sans-serif;
@@ -12,7 +13,7 @@ const Main = styled.main`
 const Input = styled.input`
   max-width: 100%;
   font-size: 48px;
-  font-family: "keifont";
+  font-family: ${keiFont.style.fontFamily};
   margin-bottom: 24px;
   border-top: none;
   border-right: none;

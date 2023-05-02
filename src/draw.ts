@@ -1,3 +1,5 @@
+import { keiFont } from "./styles/globalStyle";
+
 const fontSize = 230;
 const descender = 0.88;
 
@@ -13,7 +15,7 @@ export const drawText = (
   context.fillStyle = "#000";
   context.strokeStyle = strokeStyle;
   context.lineWidth = 6;
-  context.font = `${fontSize}px keifont`;
+  context.font = `${fontSize}px ${keiFont.style.fontFamily}`;
   context.textAlign = "center";
 
   const drawChar = (x: number, y: number, char: string, deg: number) => {
