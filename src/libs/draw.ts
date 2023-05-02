@@ -1,3 +1,4 @@
+import GIF from "gif.js";
 import { keiFont } from "@/styles/localFonts";
 
 const fontSize = 230;
@@ -166,7 +167,6 @@ export const createGif = (text: string) => {
   }
   drawGenkotsu(text, maxWidth, maxHeight, originalContext);
 
-  // @ts-ignore
   const gif = new GIF({
     workers: 2,
     quality: 10,
