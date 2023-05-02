@@ -2,7 +2,7 @@
 
 ![げんこつ](./genkotsu.png)
 
-https://inaniwaudon.github.io/genkotsu/
+<https://inaniwaudon.github.io/genkotsu/>
 
 ```bash
 yarn
