@@ -3,7 +3,7 @@ import Script from "next/script";
 import Head from "next/head";
 import styled from "styled-components";
 import GenkotsuDrawer from "@/components/GenkotsuDrawer";
-import { keiFont } from "@/styles/globalStyle";
+import { keiFont } from "@/styles/localFonts";
 
 const Main = styled.main`
   font-family: sans-serif;

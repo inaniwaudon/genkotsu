@@ -1,4 +1,4 @@
-import { keiFont } from "./styles/globalStyle";
+import { keiFont } from "./styles/localFonts";
 
 const fontSize = 230;
 const descender = 0.88;
