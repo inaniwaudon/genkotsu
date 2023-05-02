@@ -114,7 +114,7 @@ const Index = () => {
             )}
             <Script async src="https://platform.twitter.com/widgets.js" />
           </SnsParagraph>
-          <Script src="./gif.js" />
+          <Script src="/genkotsu/gif.js" />
         </Footer>
       </Main>
     </>
