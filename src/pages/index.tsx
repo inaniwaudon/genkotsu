@@ -86,7 +86,15 @@ const Index = () => {
             <Anchor href="https://licenses.opensource.jp/Apache-2.0/Apache-2.0.html">
               the Apache License 2.0
             </Anchor>
-            .
+          </p>
+          <p>
+            また、GIF 生成のライブラリとして{" "}
+            <Anchor href="https://jnordberg.github.io/gif.js/">gif.js</Anchor>{" "}
+            を使用しています。
+            <Anchor href="https://licenses.opensource.jp/MIT/MIT.html">
+              The MIT License (MIT)
+            </Anchor>{" "}
+            Copyright (c) 2013 Johan Nordberg
           </p>
           <SnsParagraph>
             <Anchor href="https://github.com/inaniwaudon/genkotsu">
@@ -105,6 +113,7 @@ const Index = () => {
             )}
             <Script async src="https://platform.twitter.com/widgets.js" />
           </SnsParagraph>
+          <Script src="/gif.js" />
         </Footer>
       </Main>
     </>
