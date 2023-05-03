@@ -1,4 +1,4 @@
-import { keiFont } from "./styles/localFonts";
+import { keiFont } from "@/styles/localFonts";
 
 const fontSize = 230;
 const descender = 0.88;
@@ -15,6 +15,7 @@ export const drawText = (
   context.fillStyle = "#000";
   context.strokeStyle = strokeStyle;
   context.lineWidth = 6;
+  // `var(--kei-font)` is not worked somehow
   context.font = `${fontSize}px ${keiFont.style.fontFamily}`;
   context.textAlign = "center";
 

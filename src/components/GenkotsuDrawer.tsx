@@ -1,6 +1,6 @@
 import { useEffect, useRef, useTransition } from "react";
 import styled from "styled-components";
-import { createGif, drawGenkotsu, drawerHeight, drawerWidth } from "@/draw";
+import { createGif, drawGenkotsu, drawerHeight, drawerWidth } from "@/libs/draw";
 
 const maxWidth = 400 * (16 / 9);
 
@@ -55,7 +55,9 @@ const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
         if (!context) {
           return;
         }
-        drawGenkotsu(text, drawerWidth, drawerHeight, context);
+        document.fonts.ready.then(() =>
+          drawGenkotsu(text, drawerWidth, drawerHeight, context)
+        )
       }
     });
   }, [text]);
