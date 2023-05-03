@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useCallback, useEffect, useState } from "react";
 import Script from "next/script";
 
 import Head from "next/head";
 import styled from "styled-components";
 import GenkotsuDrawer from "@/components/elements/GenkotsuDrawer";
 import { keiFont } from "@/styles/localFonts";
+import { useRouter } from "next/router";
 
 const Main = styled.main`
   font-family: sans-serif;
@@ -42,8 +43,28 @@ export type IndexPageProps = {
 }
 
 export const IndexPage: React.FC<IndexPageProps> = ({initialText}) => {
+  const router = useRouter();
+
   const [text, setText] = useState(initialText ?? "げんこつ");
   const [isClient, setIsClient] = useState(false);
+
+  const changeInputHandler = useCallback<ChangeEventHandler<HTMLInputElement>>(
+    (event) => {
+      const text = event.currentTarget.value
+      setText(text)
+      router.push(
+        {
+          pathname: `/`,
+          query: {
+            text
+          }
+        },
+        `?text=${text}`,
+        {shallow: true}
+      );
+    }, []
+  )
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -77,7 +98,7 @@ export const IndexPage: React.FC<IndexPageProps> = ({initialText}) => {
           <Input
             type="text"
             value={text}
-            onChange={(e) => setText(e.currentTarget.value)}
+            onChange={changeInputHandler}
           />
         </div>
         <GenkotsuDrawer text={text} />
