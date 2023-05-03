@@ -55,9 +55,7 @@ const GenkotsuDrawer = ({ text }: GenkotsuDrawerProps) => {
         if (!context) {
           return;
         }
-        document.fonts.ready.then(() =>
-          drawGenkotsu(text, drawerWidth, drawerHeight, context)
-        )
+        drawGenkotsu(text, drawerWidth, drawerHeight, context);
       }
     });
   }, [text]);
