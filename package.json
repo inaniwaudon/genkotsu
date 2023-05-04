@@ -10,18 +10,21 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "18.16.3",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.1",
-    "eslint": "8.39.0",
-    "eslint-config-next": "13.3.2",
+    "gif.js": "^0.2.0",
     "next": "13.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "styled-components": "^5.3.10",
-    "typescript": "5.0.4"
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
-    "@types/styled-components": "^5.1.26"
+    "@types/gif.js": "^0.2.2",
+    "@types/node": "18.16.3",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
+    "@types/styled-components": "^5.1.26",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "8.39.0",
+    "eslint-config-next": "^13.3.4",
+    "typescript": "5.0.4"
   }
 }
