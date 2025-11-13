@@ -47,8 +47,10 @@ export const drawText = (
   const xList = [x0, x1, x0, x1];
   const yList = [y0, y0, y1, y1];
   const degList = [-10, 8, -14, 4];
-  for (let i = 0; i < Math.min(text.length, 4); i++) {
-    drawChar(xList[i], yList[i], text[i], degList[i]);
+
+  const characters = Array.from(new Intl.Segmenter().segment(text));
+  for (let i = 0; i < Math.min(characters.length, 4); i++) {
+    drawChar(xList[i], yList[i], characters[i].segment, degList[i]);
   }
 };
 
